@@ -50,6 +50,22 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
+local autocmd = vim.api.nvim_create_autocmd
+
+function R(name)
+    require("plenary.reload").reload_module(name)
+end
+
+autocmd('TextYankPost', {
+    pattern = '*',
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = 'IncSearch',
+            timeout = 40,
+        })
+    end,
+})
+
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)

@@ -1,2 +1,2 @@
-require("aditya")
+require("config")
 
