@@ -10,11 +10,7 @@ return {
             end)
             vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 
-            local telescope = require("telescope")
-            telescope.setup {
-                pickers = {
-                }
-            }
+            require("telescope").setup {}
         end
     }
 }
