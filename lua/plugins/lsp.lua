@@ -97,6 +97,17 @@ return {
     {
         "hrsh7th/cmp-nvim-lsp",
         lazy = false,
+    },
+    {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        config = function()
+            require("mason-tool-installer").setup({
+                ensure_installed = {
+                    "prettier", -- formatter
+                    "stylua", -- formatter
+                },
+            })
+        end
     }
 }
 
