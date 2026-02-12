@@ -67,3 +67,79 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
+-- Auto-generate CHEATSHEET.md
+vim.api.nvim_create_user_command("GenCheatsheet", function()
+    local modes = { "n", "i", "v", "x" }
+    local keymaps = {}
+
+    -- Helper to collect maps
+    local function collect(mode, maps)
+        for _, map in pairs(maps) do
+            local desc = map.desc
+            local lhs = map.lhs
+            
+            -- Filter out noisy internal descriptions
+            local is_noisy = false
+            if desc then
+                if desc:match("^vim%.") then is_noisy = true end       -- e.g. vim.lsp.buf...
+                if desc:match("^cmp%.") then is_noisy = true end       -- e.g. cmp.utils...
+                if desc:match("^:help") then is_noisy = true end       -- e.g. :help v_@-default
+                if desc:match("keymap%.set_map") then is_noisy = true end
+            end
+
+            if desc and desc ~= "" and not is_noisy then
+                table.insert(keymaps, { mode = mode, lhs = lhs, desc = desc })
+            end
+        end
+    end
+
+    -- Manually add CMP and other tricky keymaps that don't show up well
+    table.insert(keymaps, { mode = "i", lhs = "<C-p>", desc = "Autocomplete: Previous Item" })
+    table.insert(keymaps, { mode = "i", lhs = "<C-n>", desc = "Autocomplete: Next Item" })
+    table.insert(keymaps, { mode = "i", lhs = "<C-y>", desc = "Autocomplete: Confirm" })
+    table.insert(keymaps, { mode = "i", lhs = "<C-Space>", desc = "Autocomplete: Trigger" })
+    
+    -- Manually add Neovim builtin defaults that are useful
+    table.insert(keymaps, { mode = "n", lhs = "gx", desc = "Open Link Under Cursor" })
+
+    -- Collect Global & Buffer-Local
+    for _, mode in ipairs(modes) do
+        collect(mode, vim.api.nvim_get_keymap(mode))
+        collect(mode, vim.api.nvim_buf_get_keymap(0, mode))
+    end
+
+    -- Deduplicate based on LHS + Mode
+    local unique_maps = {}
+    local seen = {}
+    for _, map in ipairs(keymaps) do
+        local id = map.mode .. "|" .. map.lhs
+        if not seen[id] then
+            seen[id] = true
+            table.insert(unique_maps, map)
+        end
+    end
+
+    -- Sort by description
+    table.sort(unique_maps, function(a, b) return a.desc < b.desc end)
+
+    -- Generate Markdown in Config Dir
+    local config_path = vim.fn.stdpath("config")
+    local filepath = config_path .. "/CHEATSHEET.md"
+    local file = io.open(filepath, "w")
+    
+    if file then
+        file:write("# Neovim Cheatsheet\n\n")
+        file:write("| Mode | Key | Description |\n")
+        file:write("|---|---|---|\n")
+        for _, map in ipairs(unique_maps) do
+            -- Escape pipes for Markdown table
+            local safe_lhs = map.lhs:gsub("|", "\\|")
+            file:write(string.format("| %s | `%s` | %s |\n", map.mode, safe_lhs, map.desc))
+        end
+        file:close()
+        print("Cheatsheet generated at " .. filepath)
+    else
+        print("Error writing file to " .. filepath)
+    end
+end, {})
+

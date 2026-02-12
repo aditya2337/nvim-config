@@ -1,88 +1,86 @@
-# Neovim Shortcut Cheatsheet
+# Neovim Cheatsheet
 
-## General
-| Shortcut | Mode | Description |
-| :--- | :--- | :--- |
-| `<Space>` | - | **Leader Key** |
-| `<leader>pv` | Normal | Open Netrw (File Explorer) |
-| `<C-d>` | Normal | Scroll down (half page) & center cursor |
-| `<C-u>` | Normal | Scroll up (half page) & center cursor |
-| `n` | Normal | Next search result (centers cursor) |
-| `N` | Normal | Previous search result (centers cursor) |
-| `<leader>x` | Normal | Make current file executable (`chmod +x`) |
-| `<leader>s` | Normal | Replace word under cursor globally |
-
-## Editing & Movement
-| Shortcut | Mode | Description |
-| :--- | :--- | :--- |
-| `J` | Visual | Move selected line(s) down |
-| `K` | Visual | Move selected line(s) up |
-| `J` | Normal | Append next line to current line (keep cursor) |
-| `<leader>p` | Visual | Paste over selection without losing paste buffer |
-| `<leader>y` | N/V | Copy to system clipboard |
-| `<leader>Y` | Normal | Copy line to system clipboard |
-| `<leader>d` | N/V | Delete without copying (to void register) |
-| `<C-c>` | Insert | Exit insert mode (alternative to Esc) |
-
-## Window & Tmux Navigation
-| Shortcut | Mode | Description |
-| :--- | :--- | :--- |
-| `<C-h>` | Normal | Navigate Left (works with Tmux) |
-| `<C-l>` | Normal | Navigate Right (works with Tmux) |
-| `<C-j>` | Normal | Navigate Down (works with Tmux - implied) |
-| `<C-k>` | Normal | Navigate Up (works with Tmux - implied) |
-| `<C-f>` | Normal | Open New Tmux Sessionizer (if configured) |
-
-## Telescope (Fuzzy Finder)
-| Shortcut | Mode | Description |
-| :--- | :--- | :--- |
-| `<C-p>` | Normal | Find Files (Project) |
-| `<leader>ps` | Normal | Project Search (Grep) |
-| `<leader>vh` | Normal | Help Tags |
-
-## Git (Fugitive, Gitsigns, Diffview)
-| Shortcut | Mode | Description |
-| :--- | :--- | :--- |
-| `<leader>gs` | Normal | Git Status (Fugitive) |
-| `<leader>p` | Normal | Git Push (in fugitive buffer) |
-| `<leader>P` | Normal | Git Pull (in fugitive buffer) |
-| `<leader>t` | Normal | Push to upstream (`git push -u origin`) |
-| **Gitsigns** | | |
-| `]c` / `[c` | Normal | Next / Previous Hunk |
-| `<leader>hs` | N/V | Stage Hunk |
-| `<leader>hr` | N/V | Reset Hunk |
-| `<leader>hu` | Normal | Undo Stage Hunk |
-| `<leader>hS` | Normal | Stage Buffer |
-| `<leader>hR` | Normal | Reset Buffer |
-| `<leader>hp` | Normal | Preview Hunk |
-| `<leader>hb` | Normal | Blame Line (Full) |
-| `<leader>tb` | Normal | Toggle Inline Blame |
-| `<leader>hd` | Normal | Diff This Hunk |
-| **Diffview** | | |
-| `<leader>gd` | Normal | Open Diff View |
-| `<leader>gh` | Normal | File History |
-| `<leader>gc` | Normal | Close Diff View |
-
-## LSP (Language Server Protocol)
-| Shortcut | Mode | Description |
-| :--- | :--- | :--- |
-| `gd` | Normal | Go to Definition |
-| `K` | Normal | Hover Documentation |
-| `<leader>vws` | Normal | Workspace Symbol Search |
-| `<leader>vd` | Normal | Open Diagnostic Float |
-| `[d` | Normal | Next Diagnostic |
-| `]d` | Normal | Previous Diagnostic |
-| `<leader>vca` | Normal | Code Action |
-| `<leader>vrr` | Normal | Find References |
-| `<leader>vrn` | Normal | Rename Symbol |
-| `<C-h>` | Insert | Signature Help |
-| `<leader>f` | Normal | Format buffer |
-
-## Quickfix Navigation
-| Shortcut | Mode | Description |
-| :--- | :--- | :--- |
-| `<C-k>` | Normal | Next Quickfix Item |
-| `<C-j>` | Normal | Previous Quickfix Item |
-| `<leader>k` | Normal | Next Location List Item |
-| `<leader>j` | Normal | Previous Location List Item |
-
+| Mode | Key | Description |
+|---|---|---|
+| n | `[<C-T>` |  :ptprevious |
+| n | `]B` | :blast |
+| n | `]b` | :bnext |
+| n | `[b` | :bprevious |
+| n | `[B` | :brewind |
+| n | `]Q` | :clast |
+| n | `]q` | :cnext |
+| n | `]<C-Q>` | :cnfile |
+| n | `[<C-Q>` | :cpfile |
+| n | `[q` | :cprevious |
+| n | `[Q` | :crewind |
+| n | `]A` | :last |
+| n | `]L` | :llast |
+| n | `]l` | :lnext |
+| n | `]<C-L>` | :lnfile |
+| n | `[<C-L>` | :lpfile |
+| n | `[l` | :lprevious |
+| n | `[L` | :lrewind |
+| n | `]a` | :next |
+| n | `[a` | :previous |
+| n | `]<C-T>` | :ptnext |
+| n | `[A` | :rewind |
+| n | `]T` | :tlast |
+| n | `]t` | :tnext |
+| n | `[t` | :tprevious |
+| n | `[T` | :trewind |
+| n | `[ ` | Add empty line above cursor |
+| n | `] ` | Add empty line below cursor |
+| i | `<C-y>` | Autocomplete: Confirm |
+| i | `<C-n>` | Autocomplete: Next Item |
+| i | `<C-p>` | Autocomplete: Previous Item |
+| i | `<C-Space>` | Autocomplete: Trigger |
+| n | ` gc` | Close Diff View |
+| n | ` Y` | Copy Line to System Clipboard |
+| n | ` y` | Copy to System Clipboard |
+| x | ` y` | Copy to System Clipboard |
+| v | ` y` | Copy to System Clipboard |
+| v | ` d` | Delete to Void Register |
+| n | ` d` | Delete to Void Register |
+| x | ` d` | Delete to Void Register |
+| n | ` gd` | Diff View |
+| n | ` gh` | File History |
+| n | `<C-P>` | Find Files (Project) |
+| n | ` f` | Format Buffer |
+| n | ` gs` | Git Status |
+| n | ` ps` | Grep String (Project) |
+| n | ` vh` | Help Tags |
+| n | `J` | Join Lines (Keep Cursor) |
+| n | `[D` | Jump to the first diagnostic in the current buffer |
+| n | `]D` | Jump to the last diagnostic in the current buffer |
+| n | `]d` | Jump to the next diagnostic in the current buffer |
+| n | `[d` | Jump to the previous diagnostic in the current buffer |
+| n | ` x` | Make Executable |
+| x | `J` | Move Selection Down |
+| v | `J` | Move Selection Down |
+| x | `K` | Move Selection Up |
+| v | `K` | Move Selection Up |
+| n | `<C-H>` | Navigate Left (Tmux) |
+| n | `<C-L>` | Navigate Right (Tmux) |
+| n | ` k` | Next Location |
+| n | `<C-K>` | Next Quickfix |
+| n | `n` | Next Search Result (Centered) |
+| n | ` pv` | Open File Explorer (Netrw) |
+| n | `gx` | Open Link Under Cursor |
+| n | `<C-F>` | Open Tmux Sessionizer |
+| v | `gx` | Opens filepath or URI under cursor with the system handler (file explorer, web browser, …) |
+| x | `gx` | Opens filepath or URI under cursor with the system handler (file explorer, web browser, …) |
+| x | ` p` | Paste Over (Keep Buffer) |
+| v | ` p` | Paste Over (Keep Buffer) |
+| n | ` j` | Prev Location |
+| n | `<C-J>` | Prev Quickfix |
+| n | `N` | Prev Search Result (Centered) |
+| n | `<C-D>` | Scroll Down (Centered) |
+| n | `<C-U>` | Scroll Up (Centered) |
+| n | ` s` | Search & Replace Word |
+| n | `<C-W>d` | Show diagnostics under the cursor |
+| n | `<C-W><C-D>` | Show diagnostics under the cursor |
+| x | `gc` | Toggle comment |
+| n | `gc` | Toggle comment |
+| v | `gc` | Toggle comment |
+| n | `gcc` | Toggle comment line |
+| n | ` sk` | [S]earch [K]eymaps |
