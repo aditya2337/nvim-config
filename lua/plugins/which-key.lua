@@ -13,6 +13,7 @@ return {
     config = function() 
         local wk = require("which-key")
         wk.add({
+            { "<leader>a", group = "AI" },
             { "<leader>f", group = "File/Format" },
             { "<leader>g", group = "Git" },
             { "<leader>h", group = "Git Hunk" },
@@ -23,4 +24,3 @@ return {
         })
     end,
 }
-

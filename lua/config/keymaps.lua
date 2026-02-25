@@ -47,6 +47,22 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc =
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
+local copilot_enabled = true
+vim.keymap.set("n", "<leader>ae", function()
+    if copilot_enabled then
+        vim.cmd("Copilot disable")
+        copilot_enabled = false
+        vim.notify("Copilot disabled", vim.log.levels.INFO)
+    else
+        vim.cmd("Copilot enable")
+        copilot_enabled = true
+        vim.notify("Copilot enabled", vim.log.levels.INFO)
+    end
+end, { desc = "AI: Toggle Copilot" })
+
+vim.keymap.set("n", "<leader>as", "<cmd>Copilot status<CR>", { desc = "AI: Copilot Status" })
+vim.keymap.set("n", "<leader>aa", "<cmd>Copilot auth<CR>", { desc = "AI: Copilot Auth" })
+
 local autocmd = vim.api.nvim_create_autocmd
 
 function R(name)
@@ -142,4 +158,3 @@ vim.api.nvim_create_user_command("GenCheatsheet", function()
         print("Error writing file to " .. filepath)
     end
 end, {})
-
