@@ -5,6 +5,7 @@ return {
     cmd = "Copilot",
     build = ":Copilot auth",
     opts = {
+      copilot_node_command = "/opt/homebrew/bin/node",
       suggestion = {
         enabled = true,
         auto_trigger = true,
