@@ -1,0 +1,15 @@
+# Neovim logs
+.nvimlog
+nvim.log
+
+# Neovim local state files
+.netrwhist
+Session.vim
+
+# Vim swap/backup files
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
