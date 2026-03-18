@@ -22,6 +22,12 @@ vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy Line to System Clipboar
 
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]], { desc = "Delete to Void Register" })
 
+vim.keymap.set("n", "<leader>cp", function()
+    local path = vim.fn.expand('%')
+    vim.fn.setreg('+', path)
+    vim.notify('Copied: ' .. path)
+end, { desc = "Copy Relative Path" })
+
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
